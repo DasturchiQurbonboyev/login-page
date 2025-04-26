@@ -41,7 +41,7 @@ const Login = () => {
         <canvas id="canvas"></canvas>
         <form onSubmit={loginSubmit} action="#" method="post" className="space-y-4 log-in">
             <div>
-              <label for="login" className="mb-2  text-white text-lg">Login</label>
+              <label htmlFor="login" className="mb-2  text-white text-lg">Login</label>
               <input
                 onChange={(e)=> setLogin(e.target.value)}
                 id="text"
@@ -52,7 +52,7 @@ const Login = () => {
               />
             </div>
             <div>
-              <label for="password" className="mb-2 text-white text-lg">Password</label>
+              <label htmlFor="password" className="mb-2 text-white text-lg">Password</label>
               <input
                 onChange={(e)=> setPassword(e.target.value)}
                 id="password"
