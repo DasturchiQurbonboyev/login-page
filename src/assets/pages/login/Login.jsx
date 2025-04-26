@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import  "./Login.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { startCanvasAnimation } from '../../js/canvasAnimation';
+import { startCanvasAnimation } from '../../js/canvasAnimation.js';
 
 
 const Login = () => {
