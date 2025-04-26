@@ -2,12 +2,17 @@ import { useState } from "react";
 import  "./Login.css";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { startCanvasAnimation } from '../assets/js/canvasAnimation';
+
 
 const Login = () => {
 
   const [login, setLogin] = useState()
   const [password, setPassword] = useState()
   const naigate = useNavigate()
+  useEffect(() => {
+    startCanvasAnimation();
+  }, []);
 
   const loginSubmit =(event)=>{
     event.preventDefault()

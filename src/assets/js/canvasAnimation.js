@@ -1,3 +1,6 @@
+export function startCanvasAnimation() {
+
+
 window.requestAnimFrame = function () {
     return (
         window.requestAnimationFrame ||
@@ -239,3 +242,5 @@ window.onload = function () {
         mouse.y = false;
     });
 };
+
+}
