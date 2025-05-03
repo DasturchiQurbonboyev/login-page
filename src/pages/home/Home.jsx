@@ -1,5 +1,6 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import Sidebar from '../../components/sidebar/Sidebar'
 
 const Home = () => {
     const navigate = useNavigate()
@@ -11,10 +12,9 @@ const Home = () => {
     }
 
   return (
-    <div>
-        <h1>Home</h1>
-        <button onClick={logOutfunction}>Log out</button>
-    </div>
+    <>
+        
+    </>
   )
 }
 

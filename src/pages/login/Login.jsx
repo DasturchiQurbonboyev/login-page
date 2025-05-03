@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import  "./Login.css";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { startCanvasAnimation } from '../../js/canvasAnimation.js';
+import { startCanvasAnimation } from '../../js/canvasAnimation';
 
 
 const Login = () => {
@@ -10,6 +10,7 @@ const Login = () => {
   const [login, setLogin] = useState()
   const [password, setPassword] = useState()
   const naigate = useNavigate()
+
   useEffect(() => {
     startCanvasAnimation();
   }, []);

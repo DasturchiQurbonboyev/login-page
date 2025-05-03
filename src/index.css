@@ -1,9 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+
+  body{
+    padding: 15px;
+    background:rgb(240, 242, 245);;
+  }
+
 .login__page {
     margin: 0px;
     padding: 0px;
     position: fixed;
     background: rgb(0, 0, 0);
+    /* background: #7e7b7b80; */
     width: 100%;
     height: 100vh;
     z-index: 10;
 }
+
+table{
+  border-collapse: collapse;
+}
+
+table, th, td{
+  border: 1px solid #e9e3e3;
+}
+
+
