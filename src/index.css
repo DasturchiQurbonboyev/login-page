@@ -30,6 +30,10 @@ table, th, td{
 }
 
 
+button{
+  cursor: pointer;
+}
+
 
 
 @media (prefers-reduced-motion: no-preference) {

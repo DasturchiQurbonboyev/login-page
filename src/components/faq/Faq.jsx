@@ -15,7 +15,7 @@ const Faq = () => {
         "Authorization": `Bearer ${token}`
       }
     })
-    .then((res)=res.json())
+    .then((res)=>res.json())
     .then((item)=>{
       setFaqData(item?.data);
       

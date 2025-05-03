@@ -50,8 +50,9 @@ const Login = () => {
               <label htmlFor="login" className="mb-2  text-white text-lg">Login</label>
               <input
                 onChange={(e)=> setLogin(e.target.value)}
+                style={{padding:"12px"}}
                 id="text"
-                className="border p-3 dark:bg-indigo-700 text-white  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
+                className="border  dark:bg-indigo-700 text-white  dark:border-gray-700 shadow-md placeholder:text-base focus:scale-105 ease-in-out duration-300 border-gray-300 rounded-lg w-full"
                 type="login"
                 placeholder="Login"
                 required
