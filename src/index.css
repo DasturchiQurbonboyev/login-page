@@ -30,3 +30,10 @@ table, th, td{
 }
 
 
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .box {
+    animation: fadeIn 1s ease-in-out;
+  }
+}
