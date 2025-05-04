@@ -14,6 +14,7 @@ import Faq from './components/faq/Faq';
 import Contact from './components/contact/Contact';
 import Team from './components/team/Team';
 import News from './components/news/News';
+import Product from './components/product/Product';
  
 
 function App() {
@@ -58,6 +59,7 @@ function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="team" element={<Team />} />
           <Route path="news" element={<News />} />
+          <Route path="product" element={<Product />} />
         </Route>
       </Routes>
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-const News = () => {
+const Product = () => {
   return (
     <>
     <div className='bg-white '>
@@ -79,4 +79,4 @@ const News = () => {
   )
 }
 
-export default News
+export default Product
