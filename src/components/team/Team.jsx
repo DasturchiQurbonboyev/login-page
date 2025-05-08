@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import Loading from '../loading/Loading';
+import TeamModal from '../modal/TeamModal';
 
 const Team = () => {
 
   const token = localStorage.getItem("accestoken")
   const [teamData, setTeamData] = useState([])
-  console.log(teamData);
+  const [loading, setLoading] = useState(true)
+  const [teamEditOpen, setTeamEditOpen] = useState()
+  const [teamCreateItem, setTeamCreateItem] = useState(false)
+  console.log(teamEditOpen);
   
 
   const  getTeamData = ()=>{
@@ -18,12 +24,37 @@ const Team = () => {
     .then((res)=>res.json())
     .then((item)=>{
       setTeamData(item?.data);
+      setLoading(false)
+    })
+  }
+
+  const deleteTeam = (id)=>{
+    fetch(`https://back.ifly.com.uz/api/team-section/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-type":"application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    .then((res)=>res.json())
+    .then((item)=>{
+      setLoading(false)
+      if (item?.success){
+        getTeamData()
+        toast.success("Malumot o'chirildi !!! ")
+      } else{
+        toast.error("Xatolik iltimos qaytadan urunib ko'ring ")
+      }
     })
   }
 
   useEffect(()=>{
     getTeamData()
   },[])
+
+  if (loading){
+    return <Loading/>
+  }
 
   return (
 
@@ -33,6 +64,9 @@ const Team = () => {
       <div className="category__header flex justify-between items-center">
         <h1 className="category__title text-[22px]"></h1>
         <button  
+          onClick={()=>{
+            setTeamCreateItem(true)
+          }}
           style={{  
             paddingLeft: '1.25rem',  
             paddingRight: '1.25rem',  
@@ -61,10 +95,10 @@ const Team = () => {
           <tbody>
            {
             teamData?.map((el, index)=>(
-              <tr style={{ border: '1px solid #eee' }}>
+              <tr key={index} style={{ border: '1px solid #eee' }}>
               <td style={{ padding: '12px 16px' }}>{index+1}</td>
               <td style={{ padding: '12px 16px' }}>
-                <img src={el?.image} alt="team" />
+                <img style={{width:"150px", height:"100px", objectFit:"cover"}} src={`https://back.ifly.com.uz/${el?.image}`} alt="team" />
               </td>
               <td style={{ padding: '12px 16px' }}>{el?.full_name}</td>
               <td style={{ padding: '12px 16px' }}>{el?.position_en}</td>
@@ -72,6 +106,9 @@ const Team = () => {
               <td style={{ padding: '12px 16px' }}>{el?.position_de}</td>
               <td style={{ padding: '12px 16px', textAlign:"center"}}>
                   <button
+                    onClick={()=>{
+                      setTeamEditOpen(el)
+                    }}
                     type="button"
                     className=" text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                     style={{
@@ -86,6 +123,10 @@ const Team = () => {
                     Edit
                   </button>  
                   <button   
+                  onClick={()=>{
+                    deleteTeam(el?.id)
+                    setLoading(true)
+                  }}
                     style={{
                       paddingLeft: '1.25rem',  
                       paddingRight: '1.25rem',
@@ -106,11 +147,11 @@ const Team = () => {
         </table>
       </div>
     </div>
-    {/* {
-      (openCreateCategory || editOpen) 
+    {
+      ( teamCreateItem|| teamEditOpen) 
       &&
-      <ModalComponent categoryData={categoryData} onClose={setOpenCreateCategory} getCategoryApiModal={getCategoryApi} edit={setEditOpen} editId = {editOpen}/> 
-    } */}
+      <TeamModal  getTeamData={getTeamData}  editData={teamEditOpen} onClose = {setTeamCreateItem} onEdit= {setTeamEditOpen}/> 
+    }
   </>
   )
 }

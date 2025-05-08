@@ -1,12 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { toast } from 'react-toastify';
+import ProductModal from '../modal/ProductModal';
 
 const Product = () => {
+
+  const token = localStorage.getItem("accestoken");
+
+  const [productData, setProductData] = useState([]); 
+  const [editData, setEditData] = useState(false);
+  const [createProduct, setCreateProduct] = useState(false);
+  
+  const getProducts = () => {
+    fetch("https://back.ifly.com.uz/api/product")
+      .then((res) => res.json())
+      .then((item) => {
+        setProductData(item?.data?.products);
+      })
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  const deleteProduct =(id)=>{
+    fetch(`https://back.ifly.com.uz/api/product/${id}`,{
+      method:"DELETE",
+      headers:{
+        "Content-type":"application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    })
+    .then((res)=>res.json())
+    .then((item)=>{
+      if(item?.success){
+        getProducts()
+        toast.success("Malumot o'chirildi")
+      }else{
+        toast.error("Xatolik iltimos qaytadan urunib ko'ring")
+      }
+    })
+  }
+
   return (
     <>
     <div className='bg-white '>
       <div className="category__header flex justify-between items-center">
         <h1 className="category__title text-[22px]"></h1>
         <button  
+        onClick={()=>{  
+            setCreateProduct(true)  
+        }}
           style={{  
             paddingLeft: '1.25rem',  
             paddingRight: '1.25rem',  
@@ -24,57 +67,77 @@ const Product = () => {
           <thead>
             <tr style={{ backgroundColor: '#f3f4f6', color: '#374151' }}>
               <th style={{ padding: '12px 16px', textAlign: 'left' }}>#</th>
-              <th style={{ padding: '12px 16px', textAlign: 'left' }}>Title ENG</th>
-              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Title RU</th>
-              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Title DE</th>
+              <th style={{ padding: '12px 16px', textAlign: 'left' }}>Image</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Title</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Description</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Price</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Category</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Colors</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Sizes</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Discount</th>
+              <th style={{ padding: '12px 16px', textAlign: 'center' }}>Materials</th>
               <th style={{ padding: '12px 16px', textAlign: 'center' }}>Actions</th>
             </tr>
           </thead>
           <tbody>
-           
+           {
+            productData?.map((el, index) => (
+              <tr key={index} style={{ border: '1px solid #eee' }}>
+                <td style={{ padding: '12px 16px' }}>{index+1}</td>
+                <td style={{ padding: '12px 16px' }}>
+                  <img style={{width:"200px", height:"100px", objectFit:"cover"}} src={`https://back.ifly.com.uz/${el?.images[0]}`} alt="team" />
+                </td>
+                <td style={{ padding: '12px 16px' }}>{el?.title_en}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.description_en}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.price}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.category?.name_en}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.colors[0]?.color_en}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.sizes[0]?.size}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.discount?.discount}%</td>
+                <td style={{ padding: '12px 16px' }}>sq:{el?.materials?.sq}%</td>
+                <td style={{ padding: '12px 16px', textAlign:"center"}}>
+                    <button
+                      type="button"
+                      className=" text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
+                      style={{
+                        paddingLeft: '1.25rem',  
+                        paddingRight: '1.25rem',
+                        paddingTop: '0.5rem',  
+                        paddingBottom: '0.5rem',
+                        outline:"none"
+                      }}
+                    >
+                      Edit
+                    </button>  
+                    <button   
+                    onClick={()=>{
+                      deleteProduct(el?.id)
+                    }}
+                      style={{
+                        paddingLeft: '1.25rem',  
+                        paddingRight: '1.25rem',
+                        paddingTop: '0.5rem',  
+                        paddingBottom: '0.5rem',
+                        outline:"none"
+                      }}
+                      className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                        Delete
+                    </button>             
+                </td>
+              </tr>
+            ))
+           }
             
-              <tr style={{ border: '1px solid #eee' }}>
-              <td style={{ padding: '12px 16px' }}></td>
-              <td style={{ padding: '12px 16px' }}></td>
-              <td style={{ padding: '12px 16px' }}></td>
-              <td style={{ padding: '12px 16px' }}></td>
-              <td style={{ padding: '12px 16px', display:"flex", alignItems:"center", gap:"10px" }}>
-                  <button
-                    type="button"
-                    className=" text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
-                    style={{
-                      paddingLeft: '1.25rem',  
-                      paddingRight: '1.25rem',
-                      paddingTop: '0.5rem',  
-                      paddingBottom: '0.5rem',
-                      outline:"none"
-                    }}
-                  >
-                    Edit
-                  </button>  
-                  <button   
-                    style={{
-                      paddingLeft: '1.25rem',  
-                      paddingRight: '1.25rem',
-                      paddingTop: '0.5rem',  
-                      paddingBottom: '0.5rem',
-                      outline:"none"
-                    }}
-                    className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
-                      Delete
-                  </button>             
-              </td>
-            </tr>
          
           </tbody>
         </table>
       </div>
     </div>
-    {/* {
-      (openCreateCategory || editOpen) 
+    {
+      (createProduct || editData) 
       &&
-      <ModalComponent categoryData={categoryData} onClose={setOpenCreateCategory} getCategoryApiModal={getCategoryApi} edit={setEditOpen} editId = {editOpen}/> 
-    } */}
+      <ProductModal editData={editData} onEdit={setEditData} onClose={setCreateProduct} /> 
+    }
   </>
   )
 }

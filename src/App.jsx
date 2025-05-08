@@ -19,29 +19,8 @@ import Product from './components/product/Product';
 
 function App() {
 
-  // const tokenjon = localStorage.getItem("accestoken")
-  // const navigate = useNavigate()
-  // useEffect(()=>{
-  //   if(tokenjon){
-  //     navigate("/admin")
-  //   } else{
-  //     navigate("/")
-  //   }
-  // },[ ])
-
   return (
     <>
-      {/* <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path='/' element={<Auth/>}>
-          <Route path="/admin" element={<Home />} >
-          
-          </Route>
-        </Route>
-      </Routes> */}
-      {/* <Sidebar> */}
-      {/* </Sidebar> */}
-
       <Routes>
         <Route path="/" element={<Login />} />
 
