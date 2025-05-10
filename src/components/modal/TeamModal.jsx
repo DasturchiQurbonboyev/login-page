@@ -19,7 +19,7 @@ formData.append("file", img)
 
 const teamCreate = (e) =>{
   e.preventDefault()
-  fetch("https://back.ifly.com.uz/api/team-section",{
+  fetch("https://testaoron.limsa.uz/api/team-section",{
     method:"POST",
     headers:{"Authorization": `Bearer ${token}`},
     body: formData
@@ -40,7 +40,7 @@ const teamCreate = (e) =>{
 
 const editTeam = (e) =>{
   e.preventDefault()
-  fetch(`https://back.ifly.com.uz/api/team-section/${editData?.id}`,{
+  fetch(`https://testaoron.limsa.uz/api/team-section/${editData?.id}`,{
     method:"PATCH",
     headers:{"Authorization": `Bearer ${token}`},
     body: formData

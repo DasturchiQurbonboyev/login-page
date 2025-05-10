@@ -45,7 +45,7 @@ const Category = () => {
     return { ...base, backgroundColor: '#fee2e2', color: '#991b1b' };
   };
 
-  // https://back.ifly.com.uz/api/docs
+  // https://testaoron.limsa.uz/api/docs
 
   const token = localStorage.getItem("accestoken")
 
@@ -64,7 +64,7 @@ const Category = () => {
 
   const getCategoryApi = () =>{
 
-    fetch("https://back.ifly.com.uz/api/category")
+    fetch("https://testaoron.limsa.uz/api/category")
     .then((res) => res.json())
     .then((item) => {
       setCategoryData(item?.data)
@@ -78,7 +78,7 @@ const Category = () => {
 
 
 const createCategory = ()=>{
-  fetch("https://back.ifly.com.uz/api/category")
+  fetch("https://testaoron.limsa.uz/api/category")
   .then((res)=> res.json())
   .then((item)=> item)
 }
@@ -92,7 +92,7 @@ const createCategory = ()=>{
 //--------------------- DELETE CATEGORY START--------------//
 
   const deleteCategory = ()=>{  
-    fetch(`https://back.ifly.com.uz/api/category/${deleteId}`, {
+    fetch(`https://testaoron.limsa.uz/api/category/${deleteId}`, {
       method:"DELETE",
       headers:{
         "Content-type":"application/json",

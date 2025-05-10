@@ -23,7 +23,7 @@ const ColorModal = ({editData, onClose, onEdit, getColorData}) => {
 
   const handlSubmitColor = (e)=>{
     e.preventDefault()
-    fetch("https://back.ifly.com.uz/api/colors",{
+    fetch("https://testaoron.limsa.uz/api/colors",{
       method:"POST",
       headers:{
         "Content-type": "application/json",
@@ -52,7 +52,7 @@ const ColorModal = ({editData, onClose, onEdit, getColorData}) => {
   const editColorItem = (e) =>{
     e.preventDefault()
 
-    fetch(`https://back.ifly.com.uz/api/colors/${editData?.id}`,{
+    fetch(`https://testaoron.limsa.uz/api/colors/${editData?.id}`,{
       method:"PATCH",
       headers:{
         "Content-type": "application/json",

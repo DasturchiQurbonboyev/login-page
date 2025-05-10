@@ -10,8 +10,10 @@ const Product = () => {
   const [editData, setEditData] = useState(false);
   const [createProduct, setCreateProduct] = useState(false);
   
+  console.log(productData);
+  
   const getProducts = () => {
-    fetch("https://back.ifly.com.uz/api/product")
+    fetch("https://testaoron.limsa.uz/api/product")
       .then((res) => res.json())
       .then((item) => {
         setProductData(item?.data?.products);
@@ -23,7 +25,7 @@ const Product = () => {
   }, []);
 
   const deleteProduct =(id)=>{
-    fetch(`https://back.ifly.com.uz/api/product/${id}`,{
+    fetch(`https://testaoron.limsa.uz/api/product/${id}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",
@@ -85,18 +87,21 @@ const Product = () => {
               <tr key={index} style={{ border: '1px solid #eee' }}>
                 <td style={{ padding: '12px 16px' }}>{index+1}</td>
                 <td style={{ padding: '12px 16px' }}>
-                  <img style={{width:"200px", height:"100px", objectFit:"cover"}} src={`https://back.ifly.com.uz/${el?.images[0]}`} alt="team" />
+                  <img style={{width:"200px", height:"100px", objectFit:"cover"}} src={`https://testaoron.limsa.uz/${el?.images[0]}`} alt="team" />
                 </td>
                 <td style={{ padding: '12px 16px' }}>{el?.title_en}</td>
                 <td style={{ padding: '12px 16px' }}>{el?.description_en}</td>
                 <td style={{ padding: '12px 16px' }}>{el?.price}</td>
                 <td style={{ padding: '12px 16px' }}>{el?.category?.name_en}</td>
-                <td style={{ padding: '12px 16px' }}>{el?.colors[0]?.color_en}</td>
-                <td style={{ padding: '12px 16px' }}>{el?.sizes[0]?.size}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.colors?.map((el)=>el?.color_en).join(", ")}</td>
+                <td style={{ padding: '12px 16px' }}>{el?.sizes?.map((el)=>el?.size).join(", ")}</td>
                 <td style={{ padding: '12px 16px' }}>{el?.discount?.discount}%</td>
                 <td style={{ padding: '12px 16px' }}>sq:{el?.materials?.sq}%</td>
                 <td style={{ padding: '12px 16px', textAlign:"center"}}>
                     <button
+                    onClick={()=>{
+                      setEditData(el)
+                    }}
                       type="button"
                       className=" text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
                       style={{

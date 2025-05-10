@@ -16,7 +16,7 @@ const Colors = () => {
   
 
   const getColorData =()=>{
-    fetch("https://back.ifly.com.uz/api/colors",{
+    fetch("https://testaoron.limsa.uz/api/colors",{
       method:"GET",
       headers:{
         "Content-type":"application/json",
@@ -30,7 +30,7 @@ const Colors = () => {
   }
 
   const delColorItem =()=>{
-    fetch(`https://back.ifly.com.uz/api/colors/${delColorData}`,{
+    fetch(`https://testaoron.limsa.uz/api/colors/${delColorData}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",

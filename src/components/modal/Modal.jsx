@@ -28,7 +28,7 @@ const ModalComponent = ({categoryData, onClose, getCategoryApiModal, editId, edi
         e.preventDefault()
         setBtnDisable(false)
 
-        fetch("https://back.ifly.com.uz/api/category",{
+        fetch("https://testaoron.limsa.uz/api/category",{
             method:"POST",
             headers:{
                 "Content-type": "application/json",
@@ -57,7 +57,7 @@ const ModalComponent = ({categoryData, onClose, getCategoryApiModal, editId, edi
     const editCategory =(e)=>{
         e.preventDefault()
 
-        fetch(`https://back.ifly.com.uz/api/category/${editId}`, {
+        fetch(`https://testaoron.limsa.uz/api/category/${editId}`, {
         method:"PATCH",
         headers:{
             "Content-type": "application/json",

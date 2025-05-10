@@ -19,7 +19,7 @@ console.log(editData);
 
     const handlSubmitSize = (e) =>{       
         e.preventDefault()
-        fetch(`https://back.ifly.com.uz/api/sizes`, {
+        fetch(`https://testaoron.limsa.uz/api/sizes`, {
             method:"POST",
             headers:{
                 "Content-type": "application/json",
@@ -43,7 +43,7 @@ console.log(editData);
 
     const editSize = (e) =>{
         e.preventDefault()
-        fetch(`https://back.ifly.com.uz/api/sizes/${editData?.id}`,{
+        fetch(`https://testaoron.limsa.uz/api/sizes/${editData?.id}`,{
             method:"PATCH",
             headers:{
                 "Content-type":"application/json",

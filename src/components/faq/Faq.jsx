@@ -8,7 +8,7 @@ const Faq = () => {
   
 
   const getFaqData =()=>{
-    fetch('https://back.ifly.com.uz/api/faq',{
+    fetch('https://testaoron.limsa.uz/api/faq',{
       method:"GET",
       headers:{
         "Content-type":"application/json",

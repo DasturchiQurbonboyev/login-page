@@ -14,7 +14,7 @@ const Team = () => {
   
 
   const  getTeamData = ()=>{
-    fetch("https://back.ifly.com.uz/api/team-section",{
+    fetch("https://testaoron.limsa.uz/api/team-section",{
       method:"GET",
       headers:{
         "Content-type":"application/json",
@@ -29,7 +29,7 @@ const Team = () => {
   }
 
   const deleteTeam = (id)=>{
-    fetch(`https://back.ifly.com.uz/api/team-section/${id}`,{
+    fetch(`https://testaoron.limsa.uz/api/team-section/${id}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",

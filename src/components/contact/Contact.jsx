@@ -17,7 +17,7 @@ const Contact = () => {
   
 
   const getContactData = () =>{
-    fetch("https://back.ifly.com.uz/api/contact",{
+    fetch("https://testaoron.limsa.uz/api/contact",{
       method:"GET",
       headers:{
         "Content-type": "application/json",
@@ -37,7 +37,7 @@ const Contact = () => {
   },[])
 
   const deleteContact = (id) =>{
-    fetch(`https://back.ifly.com.uz/api/contact/${id}`,{
+    fetch(`https://testaoron.limsa.uz/api/contact/${id}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",

@@ -30,7 +30,7 @@ const DiscountModal = ({editdata, onEdit, onClose, getDiscontData}) => {
 
     const handlSubmitDiscount =(e)=>{
         e.preventDefault()
-        fetch("https://back.ifly.com.uz/api/discount",{
+        fetch("https://testaoron.limsa.uz/api/discount",{
             method:"POST",
             headers:{
                 "Content-type":"application/json",
@@ -54,7 +54,7 @@ const DiscountModal = ({editdata, onEdit, onClose, getDiscontData}) => {
 
     const editCategory = (e) =>{
         e.preventDefault()
-        fetch(`https://back.ifly.com.uz/api/discount/${editdata?.id}`,{
+        fetch(`https://testaoron.limsa.uz/api/discount/${editdata?.id}`,{
             method:"PATCH",
             headers:{
                 "Content-type": "application/json",

@@ -27,7 +27,7 @@ const ContactModal = ({getContactData,editId, setOpenCreateContact, setEditOpen}
 
   const handlSubmitContact = (e) =>{
     e.preventDefault()
-    fetch("https://back.ifly.com.uz/api/contact",{
+    fetch("/contact",{
       method:"POST",
       headers:{
         "Content-type":"application/json",
@@ -54,7 +54,7 @@ const ContactModal = ({getContactData,editId, setOpenCreateContact, setEditOpen}
 
   const editContact = (e)=>{
     e.preventDefault()
-    fetch(`https://back.ifly.com.uz/api/contact/${editId?.id}`,{
+    fetch(`https://testaoron.limsa.uz/api/contact/${editId?.id}`,{
       method:"PATCH",
       headers:{
         "Content-type":"application/json",

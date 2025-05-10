@@ -14,7 +14,7 @@ const Size = () => {
   
 
   const getSizeData = () =>{
-    fetch("https://back.ifly.com.uz/api/sizes")
+    fetch("https://testaoron.limsa.uz/api/sizes")
     .then((res)=>res.json())
     .then((item)=>{
       setSizeData(item?.data);
@@ -24,7 +24,7 @@ const Size = () => {
   }
 
   const deleteSizeData =() =>{
-    fetch(`https://back.ifly.com.uz/api/sizes/${deleteId}`,{
+    fetch(`https://testaoron.limsa.uz/api/sizes/${deleteId}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",

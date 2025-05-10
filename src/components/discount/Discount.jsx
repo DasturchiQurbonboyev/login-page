@@ -16,7 +16,7 @@ const Discount = () => {
   
 
   const getDiscontData = () =>{
-    fetch("https://back.ifly.com.uz/api/discount")
+    fetch("https://testaoron.limsa.uz/api/discount")
     .then((res) => res.json())
     .then((item) => {
       setDiscountData(item?.data)
@@ -27,7 +27,7 @@ const Discount = () => {
   }
 
   const deleteDiscount = () =>{
-    fetch(`https://back.ifly.com.uz/api/discount/${deleteId}`,{
+    fetch(`https://testaoron.limsa.uz/api/discount/${deleteId}`,{
       method:"DELETE",
       headers:{
         "Content-type":"application/json",
